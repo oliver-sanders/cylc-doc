@@ -5,14 +5,11 @@ on: [pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.7']
     steps:
       - name: configure python
         uses: actions/setup-python@v1
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.7'
 
       - name: configure node
         uses: actions/setup-node@v1
@@ -32,7 +29,7 @@ jobs:
           path: 'cylc-flow'
       - name: install cylc-flow
         run: |
-          (cd cylc-flow; pip install -e .[all])
+          (cd "$GITHUB_WORKSPACE/cylc-flow"; pip install -e .[all])
 
       - name: checkout cylc-doc
         uses: actions/checkout@v1
@@ -40,7 +37,7 @@ jobs:
           path: 'cylc-doc'
       - name: install cylc-doc
         run: |
-          (cd cylc-doc; pip install -e .[all])
+          (cd "$GITHUB_WORKSPACE/cylc-doc"; pip install -e .[all])
 
       - name: install eslint
         run: |
