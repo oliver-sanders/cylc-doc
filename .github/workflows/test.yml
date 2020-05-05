@@ -19,11 +19,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
             node-version: '10.x'
-      - name: install
+      - name: install 1
         run: |
           sudo apt-get update
+      - name: install 2
+        run: |
           sudo apt-get install -y graphviz
+      - name: install 3
+        run: |
           pip install pygraphviz
+      - name: install 4
+        run: |
           pip install git+https://github.com/cylc/cylc-flow/  # install latest cylc-flow
           pip install -e .[all]
           npm install -g eslint
