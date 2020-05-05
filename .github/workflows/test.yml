@@ -6,6 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+
       - name: configure python
         uses: actions/setup-python@v1
         with:
@@ -34,10 +35,9 @@ jobs:
       - name: checkout cylc-doc
         uses: actions/checkout@v2
         with:
-          path: 'cylc-doc'
       - name: install cylc-doc
         run: |
-          (cd "$GITHUB_WORKSPACE/cylc-doc"; pip install -e .[all])
+          pip install -e .[all]
 
       - name: install eslint
         run: |
