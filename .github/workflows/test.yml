@@ -23,7 +23,7 @@ jobs:
           pip install pygraphviz
 
       - name: checkout cylc-flow
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           reposiory: 'https://github.com/cylc/cylc-flow'
           path: 'cylc-flow'
@@ -32,7 +32,7 @@ jobs:
           (cd "$GITHUB_WORKSPACE/cylc-flow"; pip install -e .[all])
 
       - name: checkout cylc-doc
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           path: 'cylc-doc'
       - name: install cylc-doc
