@@ -20,7 +20,10 @@ import json
 import pathlib
 import sys
 
-from pkg_resources import parse_version
+from pkg_resources import (
+    parse_requirements,
+    parse_version
+)
 
 
 DUMMY_FORMATS = [
@@ -84,10 +87,6 @@ def tidy(args):
 
     print(' '.join(map(str, tidy)))
 
-    if args.rm:
-        for version in tidy:
-            pathlib.Path(args.builddir, str(version)).rmdir()
-
 
 def main():
     parser = argparse.ArgumentParser()
@@ -124,12 +123,6 @@ def main():
             'Print list of older releases which have been outdated by'
             ' newer bugfix releases.'
         )
-    )
-    tidy_parser.add_argument(
-        '--rm',
-        help='Actually remove the dirs in the process',
-        action='store_true',
-        default=False
     )
     tidy_parser.set_defaults(func=tidy)
 
