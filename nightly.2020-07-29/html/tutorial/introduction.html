@@ -212,12 +212,12 @@ arrows.</p>
 executes tasks according to their schedules and dependencies.</p>
 <p>In a Cylc workflow each step is a computational task, a script to execute.
 Cylc runs each task as soon as it is appropriate to do so.</p>
-<div class="minicylc" style="text-align: center;" data-dependencies=" a => b => c// b => d => f// e => f" data-theme="demo" ><div align="center" class="align-center"><div class="graphviz"><object data="../_images/graphviz-5b25b1fa71de5668c44ab929ec77a1413410bac5.svg" type="image/svg+xml" class="graphviz">
+<div class="minicylc" style="text-align: center;" data-dependencies=" a => b => c// b => d => f// e => f" data-theme="demo" ><div align="center" class="align-center"><div class="graphviz"><object data="../_images/graphviz-571335b37d70e4c8b0563f024d724ba4a019c695.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph Mini_Cylc {
-b -&gt; c
-f
 c
 a -&gt; b
+b -&gt; c
+f
 d -&gt; f
 e -&gt; f
 b -&gt; d

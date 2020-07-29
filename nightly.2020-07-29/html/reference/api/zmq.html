@@ -493,12 +493,28 @@ a bad setting.</p></li>
 </dd></dl>
 
 <dl class="method">
-<dt id="cylc.flow.network.server.SuiteRuntimeServer.dry_run_tasks">
-<code class="sig-name descname">dry_run_tasks</code><span class="sig-paren">(</span><em class="sig-param">tasks</em>, <em class="sig-param">check_syntax=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.dry_run_tasks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prepare job file for a task.</p>
+<dt id="cylc.flow.network.server.SuiteRuntimeServer.expire_broadcast">
+<code class="sig-name descname">expire_broadcast</code><span class="sig-paren">(</span><em class="sig-param">cutoff=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.expire_broadcast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear all settings targeting cycle points earlier than cutoff.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>cutoff (str, optional):</dt><dd><p>Cycle point, broadcasts earlier than but not inclusive of the
+cutoff will be canceled.</p>
+</dd>
+</dl>
+</dd>
+<dt>Authentication:</dt><dd><p><a class="reference internal" href="#cylc.flow.network.authorisation.Priv.CONTROL" title="cylc.flow.network.authorisation.Priv.CONTROL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cylc.flow.network.authorisation.Priv.CONTROL</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cylc.flow.network.server.SuiteRuntimeServer.force_spawn_children">
+<code class="sig-name descname">force_spawn_children</code><span class="sig-paren">(</span><em class="sig-param">tasks</em>, <em class="sig-param">outputs</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.force_spawn_children" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spawn children of given task outputs.</p>
 <dl>
-<dt>Args:</dt><dd><p>task (list): List of identifiers, see <a class="reference internal" href="#task-globs">task globs</a>
-check_syntax (bool, optional): Check shell syntax.</p>
+<dt>Args:</dt><dd><p>tasks (list): List of identifiers, see <cite>task globs</cite>
+outputs (list): List of outputs to spawn on</p>
 </dd>
 <dt>Returns:</dt><dd><p>tuple: (outcome, message)</p>
 <dl class="simple">
@@ -514,13 +530,22 @@ check_syntax (bool, optional): Check shell syntax.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="cylc.flow.network.server.SuiteRuntimeServer.expire_broadcast">
-<code class="sig-name descname">expire_broadcast</code><span class="sig-paren">(</span><em class="sig-param">cutoff=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.expire_broadcast" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clear all settings targeting cycle points earlier than cutoff.</p>
-<dl class="simple">
+<dt id="cylc.flow.network.server.SuiteRuntimeServer.force_trigger_tasks">
+<code class="sig-name descname">force_trigger_tasks</code><span class="sig-paren">(</span><em class="sig-param">tasks</em>, <em class="sig-param">reflow=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.force_trigger_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigger submission of task jobs where possible.</p>
+<dl>
 <dt>Args:</dt><dd><dl class="simple">
-<dt>cutoff (str, optional):</dt><dd><p>Cycle point, broadcasts earlier than but not inclusive of the
-cutoff will be canceled.</p>
+<dt>tasks (list):</dt><dd><p>List of identifiers, see <a class="reference internal" href="#task-globs">task globs</a></p>
+</dd>
+<dt>reflow (bool, optional):</dt><dd><p>Start new flow(s) from triggered tasks.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>tuple: (outcome, message)</p>
+<dl class="simple">
+<dt>outcome (bool)</dt><dd><p>True if command successfully queued.</p>
+</dd>
+<dt>message (str)</dt><dd><p>Information about outcome.</p>
 </dd>
 </dl>
 </dd>
@@ -789,35 +814,6 @@ in the format <code class="docutils literal notranslate"><span class="pre">{task
 </dl>
 </dd>
 <dt>Authentication:</dt><dd><p><a class="reference internal" href="#cylc.flow.network.authorisation.Priv.IDENTITY" title="cylc.flow.network.authorisation.Priv.IDENTITY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cylc.flow.network.authorisation.Priv.IDENTITY</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cylc.flow.network.server.SuiteRuntimeServer.insert_tasks">
-<code class="sig-name descname">insert_tasks</code><span class="sig-paren">(</span><em class="sig-param">tasks</em>, <em class="sig-param">stop_point=None</em>, <em class="sig-param">check_point=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.insert_tasks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Insert task proxies.</p>
-<dl>
-<dt>Args:</dt><dd><dl class="simple">
-<dt>tasks (list):</dt><dd><p>A list of <a class="reference internal" href="#task-globs">task globs</a> (strings) which <em>cannot</em> contain
-any glob characters (<code class="docutils literal notranslate"><span class="pre">*</span></code>).</p>
-</dd>
-<dt>stop_point (str, optional):</dt><dd><p>Optional hold/stop cycle point for inserted task.</p>
-</dd>
-<dt>check_point (bool, optional):</dt><dd><p>If True check that the cycle point is valid for the
-given task and fail if it is not.</p>
-</dd>
-</dl>
-</dd>
-<dt>Returns:</dt><dd><p>tuple: (outcome, message)</p>
-<dl class="simple">
-<dt>outcome (bool)</dt><dd><p>True if command successfully queued.</p>
-</dd>
-<dt>message (str)</dt><dd><p>Information about outcome.</p>
-</dd>
-</dl>
-</dd>
-<dt>Authentication:</dt><dd><p><a class="reference internal" href="#cylc.flow.network.authorisation.Priv.CONTROL" title="cylc.flow.network.authorisation.Priv.CONTROL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cylc.flow.network.authorisation.Priv.CONTROL</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1127,43 +1123,11 @@ id (str): The unique trigger ID.</p>
 
 <dl class="method">
 <dt id="cylc.flow.network.server.SuiteRuntimeServer.remove_tasks">
-<code class="sig-name descname">remove_tasks</code><span class="sig-paren">(</span><em class="sig-param">tasks</em>, <em class="sig-param">spawn=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.remove_tasks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove tasks from task pool.</p>
+<code class="sig-name descname">remove_tasks</code><span class="sig-paren">(</span><em class="sig-param">tasks</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.remove_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove tasks from the task pool.</p>
 <dl>
 <dt>Args:</dt><dd><dl class="simple">
-<dt>tasks (list):</dt><dd><p>List of identifiers, see <a class="reference internal" href="#task-globs">task globs</a></p>
-</dd>
-<dt>spawn (bool, optional):</dt><dd><p>If True ensure task has spawned before removal.</p>
-</dd>
-</dl>
-</dd>
-<dt>Returns:</dt><dd><p>tuple: (outcome, message)</p>
-<dl class="simple">
-<dt>outcome (bool)</dt><dd><p>True if command successfully queued.</p>
-</dd>
-<dt>message (str)</dt><dd><p>Information about outcome.</p>
-</dd>
-</dl>
-</dd>
-<dt>Authentication:</dt><dd><p><a class="reference internal" href="#cylc.flow.network.authorisation.Priv.CONTROL" title="cylc.flow.network.authorisation.Priv.CONTROL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cylc.flow.network.authorisation.Priv.CONTROL</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cylc.flow.network.server.SuiteRuntimeServer.reset_task_states">
-<code class="sig-name descname">reset_task_states</code><span class="sig-paren">(</span><em class="sig-param">tasks</em>, <em class="sig-param">state=None</em>, <em class="sig-param">outputs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.reset_task_states" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reset statuses tasks.</p>
-<dl>
-<dt>Args:</dt><dd><dl class="simple">
-<dt>tasks (list):</dt><dd><p>List of identifiers, see <a class="reference internal" href="#task-globs">task globs</a></p>
-</dd>
-<dt>state (str, optional):</dt><dd><p>Task state to reset task to.
-See <code class="docutils literal notranslate"><span class="pre">cylc.flow.task_state.TASK_STATUSES_CAN_RESET_TO</span></code>.</p>
-</dd>
-<dt>outputs (list, optional):</dt><dd><p>Find task output by message string or trigger string
-set complete or incomplete with !OUTPUT
-<code class="docutils literal notranslate"><span class="pre">*</span></code> to set all complete, <code class="docutils literal notranslate"><span class="pre">!*</span></code> to set all incomplete.</p>
+<dt>tasks (list):</dt><dd><p>List of identifiers, see <cite>task globs</cite></p>
 </dd>
 </dl>
 </dd>
@@ -1295,26 +1259,6 @@ to complete before stopping.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="cylc.flow.network.server.SuiteRuntimeServer.spawn_tasks">
-<code class="sig-name descname">spawn_tasks</code><span class="sig-paren">(</span><em class="sig-param">tasks</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.spawn_tasks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Spawn tasks.</p>
-<dl>
-<dt>Args:</dt><dd><p>tasks (list): List of identifiers, see <a class="reference internal" href="#task-globs">task globs</a></p>
-</dd>
-<dt>Returns:</dt><dd><p>tuple: (outcome, message)</p>
-<dl class="simple">
-<dt>outcome (bool)</dt><dd><p>True if command successfully queued.</p>
-</dd>
-<dt>message (str)</dt><dd><p>Information about outcome.</p>
-</dd>
-</dl>
-</dd>
-<dt>Authentication:</dt><dd><p><a class="reference internal" href="#cylc.flow.network.authorisation.Priv.CONTROL" title="cylc.flow.network.authorisation.Priv.CONTROL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cylc.flow.network.authorisation.Priv.CONTROL</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="cylc.flow.network.server.SuiteRuntimeServer.state_totals">
 <code class="sig-name descname">state_totals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.state_totals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns counts of the task states present in the suite.</p>
@@ -1338,6 +1282,26 @@ to complete before stopping.</p>
 </dl>
 </dd>
 <dt>Authentication:</dt><dd><p><a class="reference internal" href="#cylc.flow.network.authorisation.Priv.STATE_TOTALS" title="cylc.flow.network.authorisation.Priv.STATE_TOTALS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cylc.flow.network.authorisation.Priv.STATE_TOTALS</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cylc.flow.network.server.SuiteRuntimeServer.stop_flow">
+<code class="sig-name descname">stop_flow</code><span class="sig-paren">(</span><em class="sig-param">flow_label</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.stop_flow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop a specified flow from spawning any further.</p>
+<dl>
+<dt>Args:</dt><dd><p>flow_label (str): the flow to stop</p>
+</dd>
+<dt>Returns:</dt><dd><p>tuple: (outcome, message)</p>
+<dl class="simple">
+<dt>outcome (bool)</dt><dd><p>True if command successfully queued.</p>
+</dd>
+<dt>message (str)</dt><dd><p>Information about outcome.</p>
+</dd>
+</dl>
+</dd>
+<dt>Authentication:</dt><dd><p><a class="reference internal" href="#cylc.flow.network.authorisation.Priv.CONTROL" title="cylc.flow.network.authorisation.Priv.CONTROL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cylc.flow.network.authorisation.Priv.CONTROL</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1378,31 +1342,6 @@ to complete before stopping.</p>
 <dd><p>Checkpoint current task pool.</p>
 <dl>
 <dt>Args:</dt><dd><p>name (str): The checkpoint name</p>
-</dd>
-<dt>Returns:</dt><dd><p>tuple: (outcome, message)</p>
-<dl class="simple">
-<dt>outcome (bool)</dt><dd><p>True if command successfully queued.</p>
-</dd>
-<dt>message (str)</dt><dd><p>Information about outcome.</p>
-</dd>
-</dl>
-</dd>
-<dt>Authentication:</dt><dd><p><a class="reference internal" href="#cylc.flow.network.authorisation.Priv.CONTROL" title="cylc.flow.network.authorisation.Priv.CONTROL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cylc.flow.network.authorisation.Priv.CONTROL</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cylc.flow.network.server.SuiteRuntimeServer.trigger_tasks">
-<code class="sig-name descname">trigger_tasks</code><span class="sig-paren">(</span><em class="sig-param">tasks</em>, <em class="sig-param">back_out=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cylc.flow.network.server.SuiteRuntimeServer.trigger_tasks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Trigger submission of task jobs where possible.</p>
-<dl>
-<dt>Args:</dt><dd><dl class="simple">
-<dt>tasks (list):</dt><dd><p>List of identifiers, see <a class="reference internal" href="#task-globs">task globs</a></p>
-</dd>
-<dt>back_out (bool, optional):</dt><dd><p>Abort e.g. in the event of a rejected trigger-edit.</p>
-</dd>
-</dl>
 </dd>
 <dt>Returns:</dt><dd><p>tuple: (outcome, message)</p>
 <dl class="simple">

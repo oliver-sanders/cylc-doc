@@ -901,33 +901,6 @@ consecutive cycle points to be active at any time, adjusted up if
 necessary for any future triggering.</p>
 </dd></dl>
 
-<dl class="setting">
-<dt id="suite.rc[scheduling]spawn to max active cycle points">
-<code class="sig-name descname">spawn to max active cycle points</code><a class="headerlink" href="#suite.rc[scheduling]spawn to max active cycle points" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="types.html#parsec-type-boolean" title="parsec-type-boolean"><code class="xref parsec parsec-type docutils literal notranslate"><span class="pre">boolean</span></code></a></p>
-</dd>
-</dl>
-<p>Allows tasks to spawn out to
-<a class="reference internal" href="#suite.rc[scheduling]max active cycle points" title="suite.rc[scheduling]max active cycle points"><code class="xref cylc cylc-conf docutils literal notranslate"><span class="pre">max</span> <span class="pre">active</span> <span class="pre">cycle</span> <span class="pre">points</span></code></a>,
-removing restriction that a task
-has to have submitted before its successor can be spawned.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This should be used with care given the potential impact of
-additional task proxies in terms of memory and cpu for the
-cylc server program. Also, use of the setting may highlight
-any issues with suite design relying on the default behaviour
-where downstream tasks would otherwise be waiting on ones
-upstream submitting and the suite would have stalled e.g. a
-housekeeping task at a later cycle deleting an earlier cycle’s
-data before that cycle has had chance to run where previously
-the task would not have been spawned until its predecessor had
-been submitted.</p>
-</div>
-</dd></dl>
-
 <dl class="section">
 <dt id="suite.rc[scheduling][queues]">
 <code class="sig-name descname">[queues]</code><a class="headerlink" href="#suite.rc[scheduling][queues]" title="Permalink to this definition">¶</a></dt>
