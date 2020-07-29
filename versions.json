@@ -2,5 +2,9 @@
     "8.0a2": [
         "html",
         "slides"
+    ],
+    "nightly.2020-07-29": [
+        "html",
+        "slides"
     ]
 }
