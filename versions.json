@@ -1,46 +1,50 @@
 {
-    "7.9.1": [
-        "singlehtml",
-        "html"
-    ],
     "7.8.6": [
-        "singlehtml",
-        "html"
+        "html",
+        "singlehtml"
+    ],
+    "7.9.1": [
+        "html",
+        "singlehtml"
     ],
     "8.0a2": [
-        "html",
-        "slides"
-    ],
-    "nightly.2020-08-02": [
-        "html",
-        "slides"
+        "slides",
+        "html"
     ],
     "nightly.2020-08-03": [
-        "html",
-        "slides"
-    ],
-    "nightly.2020-07-29": [
-        "html",
-        "slides"
-    ],
-    "nightly.2020-08-05": [
-        "html",
-        "slides"
-    ],
-    "nightly.2020-08-04": [
-        "html",
-        "slides"
-    ],
-    "nightly.2020-07-31": [
-        "html",
-        "slides"
-    ],
-    "nightly.2020-07-30": [
-        "html",
-        "slides"
+        "slides",
+        "html"
     ],
     "nightly.2020-08-01": [
-        "html",
-        "slides"
+        "slides",
+        "html"
+    ],
+    "nightly.2020-07-30": [
+        "slides",
+        "html"
+    ],
+    "nightly.2020-07-31": [
+        "slides",
+        "html"
+    ],
+    "nightly.2020-08-05": [
+        "slides",
+        "html"
+    ],
+    "nightly.2020-07-29": [
+        "slides",
+        "html"
+    ],
+    "nightly.2020-08-04": [
+        "slides",
+        "html"
+    ],
+    "nightly.2020-08-06": [
+        "slides",
+        "html"
+    ],
+    "nightly.2020-08-02": [
+        "slides",
+        "html"
     ]
 }
