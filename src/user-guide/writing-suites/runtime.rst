@@ -184,7 +184,7 @@ Cylc utility commands:
    [runtime]
        [[foo]]
            [[[environment]]]
-               REFERENCE_TIME = $( cylc util cycletime --offset-hours=6 )
+               REFERENCE_TIME = $( cylc cycle-point --offset-hours=6 )
 
 
 User Environment Variables

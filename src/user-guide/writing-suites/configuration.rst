@@ -123,7 +123,7 @@ e.g.:
    The suite will be split back into its constituent include-files when you
    exit the edit session. While editing, the inlined file becomes the
    official suite configuration so that changes take effect whenever you save
-   the file. See ``cylc prep edit --help`` for more information.
+   the file. See ``cylc edit --help`` for more information.
 
 
 .. _SyntaxHighlighting:
