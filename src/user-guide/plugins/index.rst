@@ -8,3 +8,4 @@ Cylc supports plugins for providing extra functionality.
    :maxdepth: 1
 
    main-loop/index
+   cli
