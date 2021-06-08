@@ -31,6 +31,11 @@ jobs:
         with:
             node-version: '10.x'
 
+      - name: apt-get
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsvg-convert
+
       - name: checkout cylc-doc
         uses: actions/checkout@v2
 
