@@ -32,7 +32,7 @@ Cylc 8.1.0
 
       TODO: fill in component versions
 
-Cylc Graph
+Graph View
 ^^^^^^^^^^
 
 The web UI now has a graph view which displays a visualisation of a workflow's graph:
@@ -42,6 +42,19 @@ The web UI now has a graph view which displays a visualisation of a workflow's g
 
 Family & cycle grouping as well as the ability to view graphs for stopped workflows
 will be added in later releases.
+
+
+Log View
+^^^^^^^^
+
+The web UI also now has a log view which displays workflow and job log files:
+
+.. image:: changes/log-view-screenshot.png
+   :width: 80%
+
+Support for viewing more log files, syntax highlighting, searching and line
+numbers are planned for future releases.
+
 
 Combined Commands
 ^^^^^^^^^^^^^^^^^
@@ -57,6 +70,18 @@ as a convenient alternative to typing:
 
 .. image:: changes/cylc-vip.gif
    :width: 80%
+
+There's also another command called ``cylc vr`` which validates and reinstalls
+a workflow, then either reloads it (if the workflow is running) or restarts it
+(if the workflow is stopped).
+
+For more information see the command line help:
+
+.. code-block:: bash
+
+   cylc vip --help
+   cylc vr --help
+
 
 Bash Completion
 ^^^^^^^^^^^^^^^
