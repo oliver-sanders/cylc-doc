@@ -59,8 +59,9 @@ numbers are planned for future releases.
 Combined Commands
 ^^^^^^^^^^^^^^^^^
 
-A new command called ``cylc vip`` which validates, installs, then plays a workflow
-as a convenient alternative to typing:
+Two new commands have been added as short-cuts for common working patterns:
+
+``cylc vip`` validates, installs, and plays a workflow, and is eqivelent to:
 
 .. code-block:: bash
 
@@ -71,9 +72,9 @@ as a convenient alternative to typing:
 .. image:: changes/cylc-vip.gif
    :width: 80%
 
-There's also another command called ``cylc vr`` which validates and reinstalls
-a workflow, then either reloads it (if the workflow is running) or restarts it
-(if the workflow is stopped).
+``cylc vr`` which validates and reinstalls a workflow, then either:
+   - reloads the workflow if it is running.
+   - restarts the workflow if it is stopped.
 
 For more information see the command line help:
 
